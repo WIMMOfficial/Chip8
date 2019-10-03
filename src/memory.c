@@ -3,7 +3,7 @@
 
 void reg_dump(byte index)
 {
-  unsigned int local_pc = cpu.ip.WORD;
+  uint16_t local_pc = cpu.ir.WORD;
    
   for (int i = 0; i <= index; ++i)
     {
@@ -21,7 +21,7 @@ void reg_dump(byte index)
 
 void reg_load(byte index)
 {
-  Uint16 local_pc = cpu.ip.WORD;
+  uint16_t local_pc = cpu.ir.WORD;
    
   for (int i = 0; i <= index; ++i)
     {
@@ -38,7 +38,7 @@ void reg_load(byte index)
 }
 
 
-byte mem_read_byte(Uint16 pos)
+byte mem_read_byte(uint16_t pos)
 {
 	if (pos >= 4096)
 	{
@@ -50,7 +50,7 @@ byte mem_read_byte(Uint16 pos)
 }
 
 
-void mem_write_byte(Uint16 pos, byte value)
+void mem_write_byte(uint16_t pos, byte value)
 {
 	if (pos >= 4096)
 	{
@@ -61,7 +61,7 @@ void mem_write_byte(Uint16 pos, byte value)
 	memory[pos] = value;
 }
 
-Uint16 mem_read_word(Uint16 pos)
+uint16_t mem_read_word(uint16_t pos)
 {
 	if (pos  >= 4096)
 	{
@@ -77,7 +77,7 @@ Uint16 mem_read_word(Uint16 pos)
 }
 
 
-void mem_write_word(Uint16 pos, Uint16 value)
+void mem_write_word(uint16_t pos, uint16_t value)
 {
 	if (pos  >= 4096)
 	{

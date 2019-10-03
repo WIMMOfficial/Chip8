@@ -31,16 +31,16 @@ void display_blank(void)
 }
 
 /*Check a pixel. If it's turned on return 1, else 0 */
-int check_pixel(int x, int y)
+uint16_t check_pixel(int x, int y)
 {
-	Uint8 r, g, b;
-	Uint32 color = 0;
-	int pixel_color = 0;
+	uint8_t r, g, b;
+	uint32_t color = 0;
+	uint16_t pixel_color = 0;
 	
 	x *= scale;
 	y *= scale;
-	Uint32 *pixels = (Uint32*)virtscreen->pixels; // pixels from virt_screen
-	Uint32 pixel = pixels[(virtscreen->w * y) + x]; // ?????????? DEBUG!!!!!
+	uint32_t *pixels = (uint32_t*)virtscreen->pixels; // pixels from virt_screen
+	uint32_t pixel = pixels[(virtscreen->w * y) + x]; 
 	SDL_GetRGB(pixel, virtscreen->format, &r, &g, &b); // get RGB values from a pixel
 	color = SDL_MapRGB(virtscreen->format, r, g, b);
 	
@@ -73,7 +73,7 @@ SDL_Surface* display_message(char *text, SDL_Color color)
 
 
 
-void display_flush(SDL_Surface* surf, Uint32 color)
+void display_flush(SDL_Surface* surf, uint32_t color)
 {
 	SDL_Rect rect;
 	rect.x = 0;
@@ -103,8 +103,8 @@ void display_trace_message(void)
 	
 	char *buffer = (char*)malloc(200);
 	
-	sprintf(buffer, "ip:%04X dt:%02X st:%02X pc:%04X %04X %s",
-			cpu.ip.WORD, cpu.dt, cpu.st, old_pc, opcode.WORD, cpu.op_string);
+	sprintf(buffer, "ir:%04X dt:%02X st:%02X pc:%04X %04X %s",
+			cpu.ir.WORD, cpu.dt, cpu.st, old_pc, opcode.WORD, cpu.op_string);
 			
 	msg = display_message(buffer, COLOR_TEXT);
 	blit_surface(msg, overlay, 10, display_height - 53);
@@ -130,7 +130,7 @@ void display_trace_message(void)
 }
 
 
-void display_refresh(int overlay_on)
+void display_refresh(bool overlay_on)
 {
 	blit_surface(virtscreen, screen, 0, 0);
 	if (overlay_on)
@@ -145,7 +145,7 @@ void display_refresh(int overlay_on)
 void display_draw(int x, int y, int color)
 {
 	SDL_Rect pixel;
-	Uint32 pixel_color = COLOR_BLACK;
+	uint32_t pixel_color = COLOR_BLACK;
 	
 	pixel.x = x * scale;
 	pixel.y = y * scale;
@@ -161,9 +161,9 @@ void display_draw(int x, int y, int color)
 }
 
 
-SDL_Surface* surface_create(int widht, int height, int alpha, Uint32 color_key)
+SDL_Surface* surface_create(int widht, int height, int alpha, uint32_t color_key)
 {
-	Uint32 rmask, gmask, bmask, amask;
+	uint32_t rmask, gmask, bmask, amask;
 	SDL_Surface *tempsurface, *newsurface;
 	
 	rmask = 0x000000ff;
@@ -197,7 +197,7 @@ SDL_Surface* surface_create(int widht, int height, int alpha, Uint32 color_key)
 
 int display_init(void)
 {
-	int res = 0;
+	int8_t res = 0;
 	
 	TTF_Init();
 	

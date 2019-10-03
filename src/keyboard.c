@@ -19,7 +19,7 @@ key keyboard[] =
   {0xF, SDLK_f}, 
 };
 
-SDLKey get_symbol(int keycode)
+SDLKey get_symbol(uint16_t keycode)
 {
   for (int i = 0; i < 15; ++i)
     {
@@ -29,7 +29,7 @@ SDLKey get_symbol(int keycode)
   return SDLK_END;
 }
 
-int get_keycode(SDLKey s)
+int16_t get_keycode(SDLKey s)
 {
   for (int i = 0; i < 15; ++i)
     {
@@ -40,9 +40,9 @@ int get_keycode(SDLKey s)
   return -1;
 }
 
-bool key_pressed(int keycode)
+bool key_pressed(uint16_t keycode)
 {
-  Uint8* key_status = SDL_GetKeyState(NULL);
+  uint8_t* key_status = SDL_GetKeyState(NULL);
 
   if (key_status[get_symbol(keycode)])
     return true;
@@ -51,7 +51,7 @@ bool key_pressed(int keycode)
 }
 
 
-int get_key_pressed(void)
+int16_t get_key_pressed(void)
 {
   int keycode = -1;
 
