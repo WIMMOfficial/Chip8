@@ -11,7 +11,7 @@ I made it just to figure out how this game console works from the inside
 
 SYSTEM REQUIREMENTS
 -------------------
-CPU: Faster than potato
+- CPU: Faster than potato
 - GPU: Any
 - OS: Linux
 - RAM: 128Mb
