@@ -3,7 +3,7 @@ Chip8
 
 WHAT IS IT?
 ------------
-Pretty simple implementation of Chip8.
+Pretty simple implementation of Chip8(Wiki page: https://en.wikipedia.org/wiki/CHIP-8).
 
 You shouldn't use the emulator for playing because it's an educational project and there are may be some bugs.
 I made it just to figure out how this game console works from the inside 
